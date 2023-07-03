@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Just+Me+Again+Down+Here&display=swap');
+
+:root {
+  --font: "Just Me Again Down Here";
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-text: #000;
+    --color-background: #E6E6E6;
+    --color-background-square: #FAFAFA;
+    --color-circle: #4F9FD9;
+    --color-circle-light: #AEDDF0;
+    --color-ex: #D9574F;
+    --color-ex-light: #F0B8B8;
+    --color-warning: #E7DE00;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #FFFFFF;
+    --color-background: #555555;
+    --color-background-square: #454545;
+    --color-circle: #4F9FD9;
+    --color-circle-light: #7594A2;
+    --color-ex: #D9574F;
+    --color-ex-light: #C8A4A4;
+    --color-warning: #9B9500;
+  }
+}
+
+body {
+  height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  font-family: var(--font);
+  margin: 0;
+}
