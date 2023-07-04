@@ -5,6 +5,7 @@ import { Board as BoardClass } from './model/Board'
 
 import Board from './components/Board.vue';
 import FlagTurn from './components/FlagTurn.vue';
+import Winner from './components/Winner.vue';
 
 let board: BoardClass = reactive(new BoardClass());
 let turn: Turn = reactive(new Turn());
@@ -14,14 +15,8 @@ let showWinner = ref(true);
 </script>
 
 <template>
-  <div class="winner" v-if="board.haveWinner() && showWinner">
-    <h1 class="title">El Ganador es:</h1>
-    <span class="square-winner">{{ turn.turn }}</span>
-    <div class="buttons">
-      <button @click="() => { showWinner = false; board.clearBoard(); showWinner = true }"> Nueva Partida </button>
-      <button @click="() => showWinner = false"> Revisar Partida </button>
-    </div>
-  </div>
+  <Winner v-if="board.haveWinner() && showWinner" :board="board" :turn="turn" @hidden-winner="showWinner = false">
+  </Winner>
 
   <div v-else class="wrapper">
     <h1 class="title">Vamoajugar Triqui</h1>
@@ -38,48 +33,6 @@ let showWinner = ref(true);
 </template>
 
 <style scoped>
-button {
-  height: 44px;
-  border-radius: 3rem;
-  border: none;
-  font-family: unset;
-  font-size: xx-large;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.winner {
-  position: fixed;
-  top: 5%;
-  left: 5%;
-  height: max-content;
-  width: 90vw;
-  display: grid;
-  grid-template-rows: 1fr 4fr 2fr;
-  justify-items: center;
-  background-color: var(--color-background-square);
-  border-radius: 20px;
-}
-
-.winner .square-winner {
-  font-size: 250px;
-}
-
-.winner .buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 220px;
-}
-
-.winner .buttons button {
-  margin: 10px 0;
-  background-color: var(--color-warning);
-  color: var(--color-text);
-}
-
 .wrapper {
   height: 100%;
   width: 100%;
