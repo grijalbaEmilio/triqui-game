@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { ref, reactive, onMounted, onUnmounted } from 'vue';
 import { Turn } from './model/Turn'
 import { Board as BoardClass } from './model/Board'
 
@@ -10,6 +10,26 @@ import Winner from './components/Winner.vue';
 let board: BoardClass = reactive(new BoardClass());
 let turn: Turn = reactive(new Turn());
 let showWinner = ref(true);
+
+const listeningKey = (event: KeyboardEvent) => {
+
+  let chanBoard = false
+
+  if (!event.ctrlKey) return
+  if (event.key.toUpperCase() !== 'Z') return
+  if (event.shiftKey) chanBoard = board.redoAction();
+  else chanBoard = board.undoAction()
+
+  if (chanBoard) turn.changeTurn();
+}
+
+onMounted(() => {
+  document.addEventListener('keydown', listeningKey);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', listeningKey);
+})
 
 
 </script>
