@@ -13,7 +13,7 @@ const { turn, board } = defineProps(
 )
 
 function handleClick(index: number): void {
-    if (board.haveWinner()) return
+    if (board.haveWinner() || board.haveTie()) return
     if (board.findSquare(index)) return;
     board.changeSquare(index, turn.turn);
     if (!board.haveWinner()) return turn.changeTurn()
