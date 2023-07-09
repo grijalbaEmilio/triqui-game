@@ -17,7 +17,7 @@ export class Board {
     this.stackUndoMoves = new Stack<ChangeStorage>();
   }
   isFull() {
-    return this.board.reduce((acc) => acc + 1, 0) === 9;
+    return this.board.reduce((acc, value) => value ? acc + 1 : acc, 0) === 9;
   }
   findSquare(index: number) {
     return this.board[index];
