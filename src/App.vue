@@ -42,15 +42,19 @@ onUnmounted(() => {
     <h1 class="title">Vamoajugar Triqui</h1>
 
     <div class="info">
-      <button class="undo" @click="board.undoAction() ? turn.changeTurn() : null"><i
-          class="bi bi-arrow-counterclockwise"></i></button>
+
+      <button class="undo" @click="board.undoAction() ? turn.changeTurn() : null">
+        <i class="bi bi-arrow-counterclockwise"></i>
+      </button>
+
       <FlagTurn v-if="!board.haveWinner() && !board.haveTie()" :turn="turn" />
       <button v-else class="new-game" @click="() => { board.clearBoard(); showWinner = true }">
         Otra
       </button>
-      <button class="redo" @click="board.redoAction() ? turn.changeTurn() : null"><i
-          class="bi bi-arrow-clockwise"></i></button>
-      <!-- TODO: create buttons for undo and redo -->
+
+      <button class="redo" @click="board.redoAction() ? turn.changeTurn() : null">
+        <i class="bi bi-arrow-clockwise"></i>
+      </button>
     </div>
 
     <Board :turn="turn" :board="board" />

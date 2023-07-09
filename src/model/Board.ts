@@ -31,6 +31,7 @@ export class Board {
   changeSquare(index: number, value: string) {
     this.board[index] = value;
     this.stackMoves.push({ boardIndex: index, value });
+    this.stackUndoMoves.clear()
   }
   undoAction(): boolean {
     const LastMove = this.stackMoves.pop();

@@ -44,4 +44,9 @@ export class Stack<T>{
         this.finalNode = this.finalNode.getBottomNode();
         return value;
     }
+
+    clear(): void {
+        // use garbage collector for destroy all nodes
+        this.finalNode = null;
+    }
 }
