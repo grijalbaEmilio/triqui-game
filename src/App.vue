@@ -42,10 +42,15 @@ onUnmounted(() => {
     <h1 class="title">Vamoajugar Triqui</h1>
 
     <div class="info">
+      <button class="undo" @click="board.undoAction() ? turn.changeTurn() : null"><i
+          class="bi bi-arrow-counterclockwise"></i></button>
       <FlagTurn v-if="!board.haveWinner() && !board.haveTie()" :turn="turn" />
       <button v-else class="new-game" @click="() => { board.clearBoard(); showWinner = true }">
-        Nueva Partida
+        Otra
       </button>
+      <button class="redo" @click="board.redoAction() ? turn.changeTurn() : null"><i
+          class="bi bi-arrow-clockwise"></i></button>
+      <!-- TODO: create buttons for undo and redo -->
     </div>
 
     <Board :turn="turn" :board="board" />
@@ -71,11 +76,32 @@ onUnmounted(() => {
   text-align: center;
 }
 
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.info .redo,
+.info .undo {
+  margin: 10px;
+  color: var(--color-text);
+}
+
+.info .undo {
+  background-color: var(--color-ex-light);
+}
+
+.info .redo {
+  background-color: var(--color-circle-light);
+}
+
 .info .new-game {
   background-color: var(--color-warning);
   color: var(--color-text);
   width: auto;
-  padding: 0 40px;
+  padding: 0 30px;
 }
 
 @media (min-width: 900px) {
