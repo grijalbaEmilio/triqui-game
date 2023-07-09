@@ -11,6 +11,7 @@ export class Board {
   stackMoves: Stack<ChangeStorage>
   stackUndoMoves: Stack<ChangeStorage>
   _haveWinner: boolean = false
+  _haveTie: boolean = false
   constructor() {
     this.board = new Array(9);
     this.stackMoves = new Stack<ChangeStorage>();
@@ -27,6 +28,7 @@ export class Board {
     this.stackMoves = new Stack<ChangeStorage>();
     this.stackUndoMoves = new Stack<ChangeStorage>();
     this._haveWinner = false;
+    this._haveTie = false
   }
   changeSquare(index: number, value: string) {
     this.board[index] = value;
@@ -62,6 +64,8 @@ export class Board {
 
 
   haveTie() {
-    return this.isFull() && !this.haveWinner();
+    if (this._haveTie) return true
+    this._haveTie = this.isFull() && !this.haveWinner();
+    return this._haveTie;
   }
 }
