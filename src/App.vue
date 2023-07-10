@@ -1,54 +1,64 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, onUnmounted } from 'vue';
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 import { Turn } from './model/Turn'
 import { Board as BoardClass } from './model/Board'
 
-import Board from './components/Board.vue';
-import FlagTurn from './components/FlagTurn.vue';
-import Winner from './components/Winner.vue';
+import Board from './components/Board.vue'
+import FlagTurn from './components/FlagTurn.vue'
+import Winner from './components/Winner.vue'
 
-let board: BoardClass = reactive(new BoardClass());
-let turn: Turn = reactive(new Turn());
-let showWinner = ref(true);
+let board: BoardClass = reactive(new BoardClass())
+let turn: Turn = reactive(new Turn())
+let showWinner = ref(true)
 
 const listeningKey = (event: KeyboardEvent) => {
-
   let chanBoard = false
 
   if (!event.ctrlKey) return
   if (event.key.toUpperCase() !== 'Z') return
-  if (event.shiftKey) chanBoard = board.redoAction();
+  if (event.shiftKey) chanBoard = board.redoAction()
   else chanBoard = board.undoAction()
 
-  if (chanBoard) turn.changeTurn();
+  if (chanBoard) turn.changeTurn()
 }
 
 onMounted(() => {
-  document.addEventListener('keydown', listeningKey);
-});
-
-onUnmounted(() => {
-  document.removeEventListener('keydown', listeningKey);
+  document.addEventListener('keydown', listeningKey)
 })
 
-
+onUnmounted(() => {
+  document.removeEventListener('keydown', listeningKey)
+})
 </script>
 
 <template>
-  <Winner v-if="board.haveWinner() && showWinner" :board="board" :turn="turn" @hidden-winner="showWinner = false">
+  <Winner
+    v-if="board.haveWinner() && showWinner"
+    :board="board"
+    :turn="turn"
+    @hidden-winner="showWinner = false"
+  >
   </Winner>
 
   <div v-else class="wrapper">
     <h1 class="title">Vamoajugar Triqui</h1>
 
     <div class="info">
-
       <button class="undo" @click="board.undoAction() ? turn.changeTurn() : null">
         <i class="bi bi-arrow-counterclockwise"></i>
       </button>
 
       <FlagTurn v-if="!board.haveWinner() && !board.haveTie()" :turn="turn" />
-      <button v-else class="new-game" @click="() => { board.clearBoard(); showWinner = true }">
+      <button
+        v-else
+        class="new-game"
+        @click="
+          () => {
+            board.clearBoard()
+            showWinner = true
+          }
+        "
+      >
         Otra
       </button>
 
@@ -118,6 +128,5 @@ onUnmounted(() => {
     left: calc(50% - 400px);
     height: 90%;
   }
-
 }
 </style>

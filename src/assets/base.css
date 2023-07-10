@@ -1,33 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Just+Me+Again+Down+Here&display=swap');
-@import url("bootstrap-icons/font/bootstrap-icons.css");
+@import url('bootstrap-icons/font/bootstrap-icons.css');
 
 :root {
-  --font: "Just Me Again Down Here";
+  --font: 'Just Me Again Down Here';
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --color-text: #000;
-    --color-background: #E6E6E6;
-    --color-background-square: #FAFAFA;
-    --color-circle: #4F9FD9;
-    --color-circle-light: #AEDDF0;
-    --color-ex: #D9574F;
-    --color-ex-light: #F0B8B8;
-    --color-warning: #E7DE00;
+    --color-background: #e6e6e6;
+    --color-background-square: #fafafa;
+    --color-circle: #4f9fd9;
+    --color-circle-light: #aeddf0;
+    --color-ex: #d9574f;
+    --color-ex-light: #f0b8b8;
+    --color-warning: #e7de00;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-text: #FFFFFF;
+    --color-text: #ffffff;
     --color-background: #555555;
     --color-background-square: #454545;
-    --color-circle: #4F9FD9;
-    --color-circle-light: #7594A2;
-    --color-ex: #D9574F;
-    --color-ex-light: #C8A4A4;
-    --color-warning: #9B9500;
+    --color-circle: #4f9fd9;
+    --color-circle-light: #7594a2;
+    --color-ex: #d9574f;
+    --color-ex-light: #c8a4a4;
+    --color-warning: #9b9500;
   }
 }
 
