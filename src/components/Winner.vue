@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { Board } from '@/model/Board'
 import { Turn } from '@/model/Turn'
+
+import JSConfetti from 'js-confetti'
 
 const { board, turn } = defineProps<{
   turn: Turn
@@ -10,6 +13,14 @@ const { board, turn } = defineProps<{
 const emit = defineEmits<{
   (e: 'hidden-winner', id: number): void
 }>()
+
+onMounted(() => {
+  const audio = document.getElementById('sound-winner') as HTMLMediaElement
+  audio.play()
+
+  const jsConfetti = new JSConfetti()
+  jsConfetti.addConfetti(/* { emojis: [turn.turn] } */)
+})
 </script>
 
 <template>
@@ -29,11 +40,23 @@ const emit = defineEmits<{
   left: 5%;
   height: max-content;
   width: 90vw;
+  max-height: 90%;
   display: grid;
   grid-template-rows: 1fr 4fr 2fr;
   justify-items: center;
   background-color: var(--color-background-square);
   border-radius: 20px;
+  animation: showWinner 0.5s;
+}
+
+@keyframes showWinner {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .winner .title {

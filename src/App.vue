@@ -7,6 +7,9 @@ import Board from './components/Board.vue'
 import FlagTurn from './components/FlagTurn.vue'
 import Winner from './components/Winner.vue'
 
+import winnerSound from '@/assets/audio/newWinner.mp3'
+import markSquareSound from '@/assets/audio/markSquare.mp3'
+
 let board: BoardClass = reactive(new BoardClass())
 let turn: Turn = reactive(new Turn())
 let showWinner = ref(true)
@@ -32,6 +35,9 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <audio :src="winnerSound" id="sound-winner"></audio>
+  <audio :src="markSquareSound" id="sound-mark-square"></audio>
+
   <Winner
     v-if="board.haveWinner() && showWinner"
     :board="board"

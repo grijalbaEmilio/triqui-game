@@ -3,8 +3,6 @@ import Square from './Square.vue'
 import { Turn } from '../model/Turn'
 import { Board } from '../model/Board'
 
-import JSConfetti from 'js-confetti'
-
 const { turn, board } = defineProps({
   turn: { type: Turn, required: true },
   board: { type: Board, required: true }
@@ -13,11 +11,12 @@ const { turn, board } = defineProps({
 function handleClick(index: number): void {
   if (board.haveWinner() || board.haveTie()) return
   if (board.findSquare(index)) return
-  board.changeSquare(index, turn.turn)
-  if (!board.haveWinner()) return turn.changeTurn()
 
-  const jsConfetti = new JSConfetti()
-  jsConfetti.addConfetti(/* { emojis: [turn.turn] } */)
+  board.changeSquare(index, turn.turn)
+  let audio = document.getElementById('sound-mark-square') as HTMLMediaElement
+  audio.play()
+
+  if (!board.haveWinner()) turn.changeTurn()
 }
 </script>
 

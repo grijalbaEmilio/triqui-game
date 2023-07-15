@@ -8,8 +8,8 @@ const { turn } = defineProps({
 
 <template>
   <span class="flag" :class="turn.turn === '❌' ? 'x-turn' : 'o-turn'">
-    <img src="@/assets/ex.svg" class="x" alt="❌" v-if="turn.turn === '❌'" />
-    <img src="@/assets/o.svg" class="o" alt="🔵" v-if="turn.turn === '🔵'" />
+    <img src="@/assets/svg/ex.svg" class="x" alt="❌" v-if="turn.turn === '❌'" />
+    <img src="@/assets/svg/o.svg" class="o" alt="🔵" v-if="turn.turn === '🔵'" />
   </span>
 </template>
 
